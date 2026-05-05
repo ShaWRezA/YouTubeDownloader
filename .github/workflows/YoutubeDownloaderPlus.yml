@@ -40,7 +40,7 @@ on:
         default: '720p'
 
       split_threshold_mb:
-        description: '✂️ Split files larger than (MB) — 0 = never'
+        description: '✂️ Split files larger than (MB) — 0 = never (Github has a 100MB size limit)'
         required: false
         type: number
         default: 90
@@ -61,10 +61,10 @@ on:
         default: 'downloads'
 
       workers:
-        description: '⚡ Parallel downloads (recommended: 3–8)'
+        description: '⚡ Parallel downloads'
         required: false
         type: number
-        default: 4
+        default: 1
 
 jobs:
   download-and-process:
