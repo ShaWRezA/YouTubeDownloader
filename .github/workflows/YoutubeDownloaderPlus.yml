@@ -236,7 +236,7 @@ jobs:
           for i in range(MAX_ATTEMPTS):
               time.sleep(STATUS_CHECK_INTERVAL)
               try:
-                  sdata = session.get(status_url, headers=HEADERS, timeout=15).json()
+                  sdata = session.get(status_url, headers=HEADERS, timeout=45).json()
               except:
                   continue
               if sdata.get('status') == 'completed':
