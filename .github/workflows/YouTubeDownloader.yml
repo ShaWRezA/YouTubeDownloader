@@ -73,12 +73,12 @@ jobs:
                   # If it has 'p' (entered by mistake), remove it
                   quality = quality.replace('p', '')
                   # If it doesn't have 'kbps', add it
-                  if 'kbps' not in quality:
-                      if quality.endswith('k'):
-                          quality = quality.replace('k', 'kbps')
+                  if 'k' not in quality:
+                      if quality.endswith('kbps'):
+                          quality = quality.replace('kbps', 'k')
                       else:
                           # If it's just a number
-                          quality = quality + 'kbps'
+                          quality = quality + 'k'
                   
                   # Check if valid
                   if quality in AUDIO_BITRATES:
@@ -179,9 +179,9 @@ jobs:
                   
                   # If it's 400, try once with different quality
                   if response.status_code == 400 and OUTPUT_TYPE == 'audio':
-                      print("🔄 Retrying with fallback quality: 192kbps")
-                      payload["audio"]["bitrate"] = "192kbps"
-                      QUALITY = "192kbps"
+                      print("🔄 Retrying with fallback quality: 192k")
+                      payload["audio"]["bitrate"] = "192k"
+                      QUALITY = "192k"
                       response = session.post(API_ENDPOINT, json=payload, headers=HEADERS, timeout=30)
                   elif response.status_code == 400 and OUTPUT_TYPE == 'video':
                       print("🔄 Retrying with fallback quality: 720p")
